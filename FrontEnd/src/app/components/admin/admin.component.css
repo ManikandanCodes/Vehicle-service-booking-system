@@ -1,0 +1,118 @@
+.admin-container {
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.logout-btn {
+  background: #e63946;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #d62828;
+}
+
+
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.stat-card h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.stat-card p {
+  font-size: 22px;
+}
+
+.stat-card.total {
+  background: #007bff;
+}
+
+.stat-card.completed {
+  background: #28a745;
+}
+
+.stat-card.pending {
+  background: #ffc107;
+  color: #000;
+}
+
+
+.table-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.bookings-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.complete-btn {
+  background: #38b000;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.complete-btn:hover {
+  background: #2d6a4f;
+}
+
+.completed {
+  color: white;
+  font-weight: bold;
+}
+
+.pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 20px;
+  color: gray;
+}

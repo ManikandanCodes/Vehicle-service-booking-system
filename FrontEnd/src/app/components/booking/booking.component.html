@@ -1,0 +1,190 @@
+<div class="booking-container">
+  <h2>Book Vehicle Service</h2>
+
+  <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+ 
+    <div class="form-section">
+      <h3>Customer Details</h3>
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="booking.name"
+          name="name"
+          required
+          placeholder="Enter your full name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="booking.email"
+          name="email"
+          required
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input
+          id="phone"
+          type="text"
+          [(ngModel)]="booking.phone"
+          name="phone"
+          required
+          placeholder="Enter your phone number"
+        />
+      </div>
+    </div>
+
+    
+    <div class="form-section">
+      <h3>Vehicle Information</h3>
+      <div class="form-group">
+        <label for="vehicle">Vehicle Type:</label>
+        <select
+          id="vehicle"
+          [(ngModel)]="booking.vehicle"
+          name="vehicle"
+          required
+        >
+          <option value="">-- Select Vehicle --</option>
+          <option value="Car">Car</option>
+          <option value="Bike">Bike</option>
+          <option value="Truck">Truck</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="model">Model Name:</label>
+        <input
+          id="model"
+          type="text"
+          [(ngModel)]="booking.model"
+          name="model"
+          placeholder="Enter model (e.g., Swift, Pulsar)"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="regNumber">Registration Number:</label>
+        <input
+          id="regNumber"
+          type="text"
+          [(ngModel)]="booking.regNumber"
+          name="regNumber"
+          placeholder="Enter vehicle registration number"
+          required
+        />
+      </div>
+    </div>
+
+   
+
+    <div class="form-section">
+      <h3>Service Details</h3>
+      <div class="form-group">
+        <label for="serviceType">Service Type:</label>
+        <select
+          id="serviceType"
+          [(ngModel)]="booking.serviceType"
+          name="serviceType"
+          required
+        >
+          <option value="">-- Select Service Type --</option>
+          <option value="Monthly General Service">Monthly General Service</option>
+          <option value="Yearly General Service">Yearly General Service</option>
+          <option value="Emergency Repair">Emergency Repair</option>
+          <option value="Part-Specific Service">Part-Specific Service</option>
+        </select>
+      </div>
+
+      <div
+        class="form-group"
+        *ngIf="booking.serviceType === 'Part-Specific Service'"
+      >
+        <label for="partService">Select Part:</label>
+        <select
+          id="partService"
+          [(ngModel)]="booking.partService"
+          name="partService"
+        >
+          <option value="">-- Select Part --</option>
+          <option value="Engine">Engine</option>
+          <option value="Oil">Oil</option>
+          <option value="Tyre">Tyre</option>
+          <option value="Filter">Filter</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="pickupOption">Pickup Option:</label>
+        <select
+          id="pickupOption"
+          [(ngModel)]="booking.pickupOption"
+          name="pickupOption"
+          required
+        >
+          <option value="">-- Select Option --</option>
+          <option value="Self Drop">Self Drop</option>
+          <option value="Pickup from Home">Pickup from Home</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Service Date:</label>
+        <input
+          id="date"
+          type="date"
+          [(ngModel)]="booking.date"
+          name="date"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="timeSlot">Preferred Time Slot:</label>
+        <select
+          id="timeSlot"
+          [(ngModel)]="booking.timeSlot"
+          name="timeSlot"
+          required
+        >
+          <option value="">-- Select Time Slot --</option>
+          <option value="9:00 AM - 11:00 AM">9:00 AM - 11:00 AM</option>
+          <option value="11:00 AM - 1:00 PM">11:00 AM - 1:00 PM</option>
+          <option value="2:00 PM - 4:00 PM">2:00 PM - 4:00 PM</option>
+          <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="remarks">Additional Notes:</label>
+        <textarea
+          id="remarks"
+          [(ngModel)]="booking.remarks"
+          name="remarks"
+          placeholder="Any specific issues or notes"
+        ></textarea>
+      </div>
+    </div>
+
+   
+    
+    <div class="form-actions">
+      <button type="submit" [disabled]="!bookingForm.form.valid">
+        Book Service
+      </button>
+    </div>
+  </form>
+
+  <p class="message" [ngClass]="{ success: isSuccess, error: !isSuccess }">
+    {{ message }}
+  </p>
+</div>

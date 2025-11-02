@@ -1,0 +1,36 @@
+<div class="page-wrapper">
+  <div class="hero-section">
+    <h1>Welcome to <span>AutoCare</span></h1>
+    <p>
+      Book your vehicle service quickly and easily. Get professional care and trusted mechanics with real-time updates.
+    </p>
+
+    <ul class="features-list">
+       <li>🚗 Trusted and Verified Workshops</li>
+      <li>🕒 Instant Service Booking</li>
+      <li>💰 Transparent Pricing</li>
+      <li>📱 Real-Time Service Updates</li>
+    </ul>
+  </div>
+
+  <div class="login-container">
+    <h2>Vehicle Service Booking</h2>
+    <h3>Login</h3>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="loginData.email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" [(ngModel)]="loginData.password" name="password" required />
+      </div>
+
+      <button class="login-btn" type="submit">Login</button>
+    </form>
+
+
+  </div>
+</div>
