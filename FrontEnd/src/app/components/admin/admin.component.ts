@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
@@ -40,12 +41,6 @@ export class AdminComponent implements OnInit {
         alert('Something went wrong while updating status.');
       }
     });
-  }
-
-
-  logout() {
-    localStorage.removeItem('admin');
-    window.location.href = '/login';
   }
 
 

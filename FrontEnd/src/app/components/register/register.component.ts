@@ -13,18 +13,28 @@ import { RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
   registerData = { name: '', email: '', password: '' };
+  confirmPassword: string = '';
   message = '';
   isSuccess = false;
 
   constructor(private http: HttpClient) {}
 
   onRegister() {
+    
+    
+    if (this.registerData.password !== this.confirmPassword) {
+      this.message = 'Passwords do not match!';
+      this.isSuccess = false;
+      return;
+    }
+
     this.http.post('http://localhost:8080/api/users/register', this.registerData)
       .subscribe({
         next: () => {
           this.message = 'Registration Successful!';
           this.isSuccess = true;
           this.registerData = { name: '', email: '', password: '' };
+          this.confirmPassword = '';
         },
         error: () => {
           this.message = 'Registration Failed! Please try again.';
