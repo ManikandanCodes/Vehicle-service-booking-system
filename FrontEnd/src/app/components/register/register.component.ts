@@ -12,15 +12,20 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
   registerData = { name: '', email: '', password: '' };
   confirmPassword: string = '';
   message = '';
   isSuccess = false;
 
+  
+  showRegPassword: boolean = false;
+  showRegConfirmPassword: boolean = false;
+
   constructor(private http: HttpClient) {}
 
   onRegister() {
-    
+
     
     if (this.registerData.password !== this.confirmPassword) {
       this.message = 'Passwords do not match!';
@@ -33,8 +38,12 @@ export class RegisterComponent {
         next: () => {
           this.message = 'Registration Successful!';
           this.isSuccess = true;
+
+      
           this.registerData = { name: '', email: '', password: '' };
           this.confirmPassword = '';
+          this.showRegPassword = false;
+          this.showRegConfirmPassword = false;
         },
         error: () => {
           this.message = 'Registration Failed! Please try again.';

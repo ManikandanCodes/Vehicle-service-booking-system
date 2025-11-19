@@ -15,7 +15,7 @@ export class LoginComponent {
 
   loginData = { email: '', password: '' };
 
-  
+
   showForgotPassword = false;
   forgotEmail = '';
   otp: string = '';
@@ -26,6 +26,11 @@ export class LoginComponent {
   loading = false;
   passwordMismatch = false;
   resetSuccess = false;
+
+
+  showPassword: boolean = false;         
+  showNewPassword: boolean = false;      
+  showConfirmPassword: boolean = false;  
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -53,8 +58,11 @@ export class LoginComponent {
       });
   }
 
-  
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
+  
   sendOtp() {
     this.loading = true;
     this.message = '';
@@ -78,13 +86,13 @@ export class LoginComponent {
   }
 
   
-
   onPasswordInput() {
-    this.passwordMismatch = this.newPassword !== this.confirmPassword && this.confirmPassword.length > 0;
+    this.passwordMismatch =
+      this.newPassword !== this.confirmPassword &&
+      this.confirmPassword.length > 0;
   }
 
   
-
   resetPassword() {
     if (this.passwordMismatch) {
       this.message = 'Passwords do not match!';
@@ -107,12 +115,10 @@ export class LoginComponent {
           this.resetSuccess = true;
           this.message = res || 'Password reset successfully!';
 
-          
           this.otp = '';
           this.newPassword = '';
           this.confirmPassword = '';
 
-          
           setTimeout(() => {
             this.resetSuccess = false;
           }, 3000);
@@ -125,7 +131,7 @@ export class LoginComponent {
       });
   }
 
-  
+ 
   closeForgotPopup() {
     this.showForgotPassword = false;
     this.otpSent = false;
@@ -136,5 +142,9 @@ export class LoginComponent {
     this.confirmPassword = '';
     this.message = '';
     this.passwordMismatch = false;
+
+
+    this.showNewPassword = false;
+    this.showConfirmPassword = false;
   }
 }

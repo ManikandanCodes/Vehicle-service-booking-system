@@ -2,7 +2,6 @@
   <h2>Create Your Account</h2>
 
   <form (ngSubmit)="onRegister()" #registerForm="ngForm" novalidate>
-  
 
     <div class="form-group">
       <label for="name">Full Name</label>
@@ -17,7 +16,6 @@
     </div>
 
     
-
     <div class="form-group">
       <label for="email">Email</label>
       <input
@@ -31,35 +29,63 @@
     </div>
 
     
-
-    <div class="form-group">
+    <div class="form-group password-group">
       <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="registerData.password"
-        placeholder="Enter your password"
-        required
-        minlength="6"
-      />
+
+      <div class="password-wrapper">
+        <input
+          [type]="showRegPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="registerData.password"
+          placeholder="Enter your password"
+          required
+          minlength="6"
+        />
+
+        <span class="eye-icon" *ngIf="!showRegPassword" (click)="showRegPassword = true">
+          <img src="eye.svg" width="22" height="22" />
+        </span>
+
+        <span class="eye-icon" *ngIf="showRegPassword" (click)="showRegPassword = false">
+          <img src="eye-slash.svg" width="22" height="22" />
+        </span>
+      </div>
     </div>
 
-    
-    <div class="form-group">
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        name="confirmPassword"
-        [(ngModel)]="confirmPassword"
-        placeholder="Re-enter your password"
-        required
-      />
-      <small *ngIf="registerData.password && confirmPassword && registerData.password !== confirmPassword" class="error-text">
-          Passwords do not match.
-      </small>
 
+    <div class="form-group password-group">
+      <label for="confirmPassword">Confirm Password</label>
+
+      <div class="password-wrapper">
+        <input
+          [type]="showRegConfirmPassword ? 'text' : 'password'"
+          id="confirmPassword"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          placeholder="Re-enter your password"
+          required
+        />
+
+      
+        <span class="eye-icon" *ngIf="!showRegConfirmPassword" (click)="showRegConfirmPassword = true">
+          <img src="eye.svg" width="22" height="22" />
+        </span>
+
+      
+        <span class="eye-icon" *ngIf="showRegConfirmPassword" (click)="showRegConfirmPassword = false">
+          <img src="eye-slash.svg" width="22" height="22" />
+        </span>
+      </div>
+
+      
+      
+      <small
+        *ngIf="registerData.password && confirmPassword && registerData.password !== confirmPassword"
+        class="error-text"
+      >
+        Passwords do not match.
+      </small>
     </div>
 
     <button

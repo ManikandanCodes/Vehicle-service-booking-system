@@ -14,12 +14,12 @@
     </ul>
   </div>
 
-  
   <div class="login-container">
     <h2>Vehicle Service Booking</h2>
     <h3>Login</h3>
 
     <form (ngSubmit)="onLogin()">
+
       <div class="form-group">
         <label>Email:</label>
         <input
@@ -31,15 +31,28 @@
         />
       </div>
 
-      <div class="form-group">
+      
+      <div class="form-group password-group">
         <label>Password:</label>
-        <input
-          type="password"
-          [(ngModel)]="loginData.password"
-          name="password"
-          required
-          placeholder="Enter your password"
-        />
+
+        <div class="password-wrapper">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="loginData.password"
+            name="password"
+            required
+            placeholder="Enter your password"
+          />
+
+        
+          <span class="eye-icon" *ngIf="!showPassword" (click)="togglePassword()">
+            <img src="eye.svg" width="22" height="22" />
+          </span>
+
+          <span class="eye-icon" *ngIf="showPassword" (click)="togglePassword()">
+            <img src="eye-slash.svg" width="22" height="22" />
+          </span>
+        </div>
       </div>
 
       <button class="login-btn" type="submit">Login</button>
@@ -47,9 +60,13 @@
       <div class="forgot-password">
         <a (click)="showForgotPassword = true">Forgot Password?</a>
       </div>
+
     </form>
   </div>
 </div>
+
+
+
 
 
 <div class="forgot-popup" *ngIf="showForgotPassword">
@@ -68,12 +85,14 @@
       />
       <button type="submit" class="otp-btn">Send OTP</button>
 
-      
       <p class="message" *ngIf="message">{{ message }}</p>
     </form>
 
+
     
     <form *ngIf="otpSent" (ngSubmit)="resetPassword()">
+
+    
       <label>Enter OTP:</label>
       <input
         type="text"
@@ -86,56 +105,76 @@
         required
       />
 
+      
       <label>New Password:</label>
-      <input
-        type="password"
-        [(ngModel)]="newPassword"
-        name="newPassword"
-        (input)="onPasswordInput()"
-        placeholder="Enter new password"
-        required
-      />
+      <div class="password-wrapper">
+        <input
+          [type]="showNewPassword ? 'text' : 'password'"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          (input)="onPasswordInput()"
+          placeholder="Enter new password"
+          required
+        />
 
+        
+        <span class="eye-icon" *ngIf="!showNewPassword" (click)="showNewPassword = true">
+          <img src="eye.svg" width="22" height="22" />
+        </span>
+
+        
+        <span class="eye-icon" *ngIf="showNewPassword" (click)="showNewPassword = false">
+          <img src="eye-slash.svg" width="22" height="22" />
+        </span>
+      </div>
+
+
+      
       <label>Confirm Password:</label>
-      <input
-        type="password"
-        [(ngModel)]="confirmPassword"
-        name="confirmPassword"
-        (input)="onPasswordInput()"
-        placeholder="Re-enter new password"
-        required
-      />
+      <div class="password-wrapper">
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          (input)="onPasswordInput()"
+          placeholder="Re-enter new password"
+          required
+        />
+
+        <span class="eye-icon" *ngIf="!showConfirmPassword" (click)="showConfirmPassword = true">
+          <img src="eye.svg" width="22" height="22" />
+        </span>
+
+        <span class="eye-icon" *ngIf="showConfirmPassword" (click)="showConfirmPassword = false">
+          <img src="eye-slash.svg" width="22" height="22" />
+        </span>
+      </div>
+
 
       
       <p *ngIf="passwordMismatch" class="error-text">
-         Passwords do not match
-      </p>
-      <p *ngIf="!passwordMismatch && confirmPassword && !resetSuccess" class="success-text">
-         Passwords match
+        Passwords do not match
       </p>
 
-    
+      <p *ngIf="!passwordMismatch && confirmPassword && !resetSuccess" class="success-text">
+        Passwords match
+      </p>
+
       <p *ngIf="resetSuccess" class="success-text">
-         Password reset successfully!
+        Password reset successfully!
       </p>
 
       
-
-      <button
-        type="submit"
-        class="reset-btn"
-        [disabled]="passwordMismatch"
-      >
+      <button type="submit" class="reset-btn" [disabled]="passwordMismatch">
         Reset Password
       </button>
 
-      
       <p class="message" *ngIf="!resetSuccess && message">
         {{ message }}
       </p>
+
     </form>
 
-    
     <button class="close-btn" (click)="closeForgotPopup()">Close</button>
   </div>
 </div>
